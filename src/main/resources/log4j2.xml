@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                pattern="%style{%d{ISO8601}}{black} %highlight{%-5level}%style{%C{1.}}{bright,yellow}.%M: %msg%n%throwable" />
+        </Console>
+
+        <RollingFile name="RollingFile"
+            fileName="/var/log/pjud/focuscomex-api.log"
+            filePattern="/var/log/focuscomex/%d{yyyy-MM}/pjud-api-%d{dd-MMMM-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <pattern>%d %p %C{1.}:%M: %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <!-- rollover on startup, daily and when the file reaches 
+                    10 MegaBytes -->
+				<OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+        <!-- LOG everything at INFO level -->
+        <Root level="error">
+            <AppenderRef ref="Console" />
+            <!--<AppenderRef ref="RollingFile" />-->
+        </Root>
+
+        <!-- LOG "com.baeldung*" at TRACE level -->
+        <Logger name="com.focuscomex" level="debug"></Logger>
+        <Logger name="com.itextpdf" level="OFF"></Logger>
+        <Logger name="org.springframework.web.servlet.view" level="OFF"></Logger>
+    </Loggers>
+
+</Configuration>
