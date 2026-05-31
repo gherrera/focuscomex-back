@@ -73,7 +73,7 @@ public class AuthenticationService implements UserDetailsService {
 		}
 		
 		List<PlanDTO> planes = planService.getPlanes(false);
-		PlanDTO trialPlan = planes.stream().filter(p -> p.isTrial()).findFirst().orElse(null);
+		PlanDTO trialPlan = planes.stream().filter(p -> p.isTrial() && p.isActive()).findFirst().orElse(null);
 		
 		User newUser = null;
 		if(trialPlan == null) {
