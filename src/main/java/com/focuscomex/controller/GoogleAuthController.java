@@ -42,16 +42,16 @@ public class GoogleAuthController {
     private final AuthenticationService authenticationService;
     private final WebClient.Builder webClientBuilder;
 
-    @Value("${google.oauth.client-id:}")
+    @Value("${google.oauth.client-id}")
     private String googleClientId;
 
-    @Value("${google.oauth.client-secret:}")
+    @Value("${google.oauth.client-secret}")
     private String googleClientSecret;
 
-    @Value("${google.oauth.redirect-uri:http://localhost:8080/api/auth/google/callback}")
+    @Value("${google.oauth.redirect-uri}")
     private String googleRedirectUri;
 
-    @Value("${api.frontend-url:http://localhost:3000}")
+    @Value("${api.frontend-url}")
     private String frontendUrl;
 
     @GetMapping("google")
