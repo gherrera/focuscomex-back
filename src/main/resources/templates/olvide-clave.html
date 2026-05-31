@@ -4,13 +4,29 @@
     <meta charset="UTF-8">
     <title>Restauración de Contraseña</title>
     <style>
-        body { font-family: Arial, sans-serif; background: #f9f9f9; color: #222; }
-        .container { background: #fff; padding: 24px; border-radius: 8px; max-width: 800px; margin: 40px auto; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
-        h2 { color: #2a4d8f; }
-        .info-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
-        .info-table th, .info-table td { text-align: left; padding: 8px; border-bottom: 1px solid #eee; }
-        .info-table th { background: #f0f4fa; color: #2a4d8f; }
-        .footer { margin-top: 32px; font-size: 0.95em; color: #888; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f5f7;
+            color: #2d323a;
+            margin: 0;
+            padding: 24px 0;
+        }
+        .container {
+            background: #ffffff;
+            padding: 28px;
+            border-radius: 12px;
+            border: 1px solid #e6e9ef;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(23, 32, 56, 0.08);
+        }
+        .footer {
+            margin-top: 32px;
+            font-size: 0.92em;
+            color: #6b7280;
+            border-top: 1px solid #eceff4;
+            padding-top: 18px;
+        }
     </style>
 </head>
 <body>
@@ -18,26 +34,26 @@
         <div style="text-align:center; margin-bottom: 24px;">
             <img src="cid:logo" alt="Logo" style="height:70px; margin-bottom:10px;"/>
         </div>
-        <h2 style="color:#2a3b8f; font-size: 1.5em; margin-bottom: 18px; text-align:center;">Restauración de Contraseña</h2>
-        <p style="font-size: 1.1em; color: #222; margin-bottom: 18px;">Hola <b th:text="${nombre}">Usuario</b>,</p>
-        <p style="margin-bottom: 18px; color: #444;">Has solicitado restablecer tu contraseña. Haz clic en el siguiente botón para crear una nueva contraseña:</p>
+        <h2 style="color:#AE874A; font-size: 1.7em; margin-bottom: 18px; text-align:center; font-weight: 700;">Restauración de Contraseña</h2>
+        <p style="font-size: 1.05em; color: #2d323a; margin-bottom: 18px;">Hola <b th:text="${nombre}" style="color:#AE874A;">Usuario</b>,</p>
+        <p style="margin-bottom: 18px; color: #4b5563; line-height: 1.55;">Has solicitado restablecer tu contraseña. Haz clic en el siguiente botón para crear una nueva contraseña:</p>
         
         <div style="text-align: center; margin: 32px 0;">
-            <a th:href="${resetUrl}" style="display: inline-block; background: #2a3b8f; color: white; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: 500;">Restablecer Contraseña</a>
+            <a th:href="${resetUrl}" style="display: inline-block; background: #AE874A; color: #1a1a1a; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; letter-spacing: 0.2px;">Restablecer Contraseña</a>
         </div>
 
-        <div style="margin: 18px 0; padding: 16px; background: #f4f8fb; border-left: 4px solid #2a4d8f;">
-            <p style="color: #444; margin: 0 0 8px 0;">Si el botón no funciona, copia y pega el siguiente enlace en tu navegador:</p>
-            <p style="color: #2a3b8f; word-break: break-all; margin: 0; font-size: 0.9em;" th:text="${resetUrl}">https://example.com/reset</p>
+        <div style="margin: 18px 0; padding: 16px; background: #faf8f3; border: 1px solid #e8dfcf; border-left: 4px solid #AE874A; border-radius: 8px;">
+            <p style="color: #4b5563; margin: 0 0 8px 0;">Si el botón no funciona, copia y pega el siguiente enlace en tu navegador:</p>
+            <p style="color: #C99B58; word-break: break-all; margin: 0; font-size: 0.9em;" th:text="${resetUrl}">https://example.com/reset</p>
         </div>
 
-        <p style="color: #d32f2f; font-size: 0.95em; margin-bottom: 32px;">Este enlace expirará en 24 horas por razones de seguridad.</p>
+        <p style="color: #8f6c35; font-size: 0.95em; margin-bottom: 32px;">Este enlace expirará en 24 horas por razones de seguridad.</p>
         
-        <p style="color: #666; margin-bottom: 24px;">Si no has solicitado restablecer tu contraseña, puedes ignorar este mensaje. Tu contraseña actual seguirá siendo válida.</p>
+        <p style="color: #6b7280; margin-bottom: 24px; line-height: 1.55;">Si no has solicitado restablecer tu contraseña, puedes ignorar este mensaje. Tu contraseña actual seguirá siendo válida.</p>
 
         <div class="footer">
             Este es un mensaje automático, no responder a este correo.<br>
-            © MisCausas.io - Sistema de Notificaciones
+            © FocusComex - Sistema de Notificaciones
         </div>
     </div>
 </body>

@@ -121,6 +121,7 @@ public class UserService {
 	public UsuarioDTO updateUser(UsuarioDTO userDTO) {
 		User user = getCurrentUser();
 		user.setName(userDTO.getName());
+		user.setCompany(userDTO.getCompany());
 		if(userDTO.getPassword() != null && !userDTO.getPassword().isEmpty()) {
 		    String encoded = passwordEncoder.encode(userDTO.getPassword());
 			user.setPassword(encoded);

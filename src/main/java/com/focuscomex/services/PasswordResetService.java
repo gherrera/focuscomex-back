@@ -1,7 +1,6 @@
 package com.focuscomex.services;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +45,7 @@ public class PasswordResetService {
             .orElseThrow(() -> new ComexException("Usuario no encontrado"));
 
         // Invalidar todos los tokens activos anteriores
-        List<PasswordResetToken> activeTokens = tokenRepository.findAllByUserAndUsedFalseAndExpiryDateAfter(user, new Date());
+        List<PasswordResetToken> activeTokens = tokenRepository.findAllByUserAndUsedFalseAndExpiryDateAfter(user, LocalDateTime.now());
         if (!activeTokens.isEmpty()) {
             activeTokens.forEach(token -> {
                 token.setUsed(true);

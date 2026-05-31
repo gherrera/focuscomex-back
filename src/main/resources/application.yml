@@ -36,35 +36,24 @@ spring:
       maximum-pool-size: ${MAX_SESSIONS:20}
       minimum-idle: ${MIN_IDLE:5}
 
-      # Timeouts - Más agresivos para detectar problemas rápido
-      connection-timeout: 10000              # Reducido de 30s a 10s
-      idle-timeout: 60000                   # Reducido de 10min a 1min
-
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
     show-sql: false
-    properties:
-      hibernate:
-        jdbc:
-          batch_size: 50
-        order_inserts: true
-        order_updates: true
-        batch_versioned_data: true
 
   mail:
-    host: ${MAIL_HOST:mail.miscausas.io}
+    host: ${MAIL_HOST:smtppro.zoho.com}
     port: ${MAIL_PORT:465}
-    username: ${MAIL_USER:aviso@miscausas.io}
-    password: ${MAIL_PWD:pdjud_desa$}
+    username: ${MAIL_USER:contacto@focuscomex.cl}
+    password: ${MAIL_PWD:TU3wbiTVg9ny}
     properties:
       mail:
         smtp:
           auth: true
           ssl:
             enable: true
-        from: ${MAIL_FROM:Seguimiento Causas Judiciales <aviso@miscausas.io>}
+        from: ${MAIL_FROM:FocusComex <contacto@focuscomex.cl>}
 
 api:
   rate-limit:
@@ -76,65 +65,14 @@ api:
     token-expiration: 86400  # 24 horas en segundos
     path: "/restablecer-clave"
 
+google:
+  oauth:
+    client-id: ${GOOGLE_CLIENT_ID:}
+    client-secret: ${GOOGLE_CLIENT_SECRET:}
+    redirect-uri: ${GOOGLE_REDIRECT_URI:}
+
 mercadopago:
   checkount:
     access-token: ${MERCADOPAGO_CHE_ACCESS_TOKEN}
   subs:
     access-token: ${MERCADOPAGO_SUB_ACCESS_TOKEN}
-
-scrapper:
-  concurrentPerInstance: ${SCRAPPER_CONCURRENT_PER_INSTANCE:1}
-  estado-diario-url: ${SCRAPPER_ESTADO_DIARIO_URL}
-  
-  # Configuración de rotación
-  rotation:
-    enabled: ${SCRAPPER_ROTATION_ENABLED:true}
-    check-interval: ${SCRAPPER_ROTATION_CHECK_INTERVAL:15}  # minutos
-    min-active-scrappers: ${SCRAPPER_MIN_ACTIVE:1}
-    max-active-scrappers: ${SCRAPPER_MAX_ACTIVE:2}
-    
-    # Criterios para rotación automática
-    criteria:
-      max-active-time: ${SCRAPPER_MAX_ACTIVE_TIME:120}      # minutos
-      error-rate-threshold: ${SCRAPPER_ERROR_RATE_THRESHOLD:15.0}  # porcentaje
-      response-time-threshold: ${SCRAPPER_RESPONSE_TIME_THRESHOLD:30000}  # ms
-      max-consecutive-failures: ${SCRAPPER_MAX_CONSECUTIVE_FAILURES:3}
-      
-    # Períodos de enfriamiento
-    cooling:
-      after-rotation: ${SCRAPPER_COOLING_AFTER_ROTATION:10}     # minutos
-      after-failure: ${SCRAPPER_COOLING_AFTER_FAILURE:15}       # minutos
-      after-error: ${SCRAPPER_COOLING_AFTER_ERROR:5}            # minutos
-    
-    # Rotación gradual
-    gradual:
-      enabled: ${SCRAPPER_GRADUAL_ROTATION:true}
-      batch-size: ${SCRAPPER_GRADUAL_BATCH_SIZE:1}
-      batch-delay: ${SCRAPPER_GRADUAL_DELAY:30}  # segundos
-  
-  # Configuración de health check
-  health:
-    enabled: ${SCRAPPER_HEALTH_CHECK_ENABLED:true}
-    check-interval: ${SCRAPPER_HEALTH_CHECK_INTERVAL:2}    # minutos
-    timeout: ${SCRAPPER_HEALTH_CHECK_TIMEOUT:10}           # segundos
-    
-    # Circuit breaker
-    circuit-breaker:
-      failure-threshold: ${SCRAPPER_CB_FAILURE_THRESHOLD:3}
-      recovery-timeout: ${SCRAPPER_CB_RECOVERY_TIMEOUT:60}  # segundos
-      half-open-max-calls: ${SCRAPPER_CB_HALF_OPEN_CALLS:2}
-    
-    # Recuperación automática
-    recovery:
-      enabled: ${SCRAPPER_AUTO_RECOVERY:true}
-      max-attempts: ${SCRAPPER_MAX_RECOVERY_ATTEMPTS:3}
-      backoff-multiplier: ${SCRAPPER_RECOVERY_BACKOFF:2.0}
-      initial-delay: ${SCRAPPER_RECOVERY_INITIAL_DELAY:60}  # segundos
-
-app:
-  webhook:
-    base-url: ${WEBHOOK_BASE_URL:http://localhost:8080}
-  scrapper:
-    timeout-minutes: ${SCRAPPER_TIMEOUT_MINUTES:10}
-  gcp:
-    bucket-name: ${GCS_BUCKET_NAME:pjud-docs}

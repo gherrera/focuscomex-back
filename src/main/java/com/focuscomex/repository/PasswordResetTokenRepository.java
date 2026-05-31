@@ -1,6 +1,6 @@
 package com.focuscomex.repository;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,5 +11,5 @@ import com.focuscomex.model.User;
 
 public interface PasswordResetTokenRepository extends JpaRepository<PasswordResetToken, Long> {
     Optional<PasswordResetToken> findByToken(String token);
-    List<PasswordResetToken> findAllByUserAndUsedFalseAndExpiryDateAfter(User user, Date now);
+    List<PasswordResetToken> findAllByUserAndUsedFalseAndExpiryDateAfter(User user, LocalDateTime now);
 }
