@@ -37,7 +37,11 @@ public class PublicController {
 	@PostMapping("user/{planId}")
 	public Map<String, String> createUser(@PathVariable Long planId, @RequestBody UsuarioDTO usuario) {
 		try {
-			return planService.createUserWithPlan(planId, usuario);
+			Map<String, Object> data = planService.createUserWithPlan(planId, usuario);
+			if(data.containsKey("initPoint")) {
+				Map.of("initPoint", data.get("initPoint").toString());
+			}
+			return null;
 		}catch(Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}

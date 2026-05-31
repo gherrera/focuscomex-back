@@ -22,6 +22,7 @@ public class UsuarioDTO {
     private String name;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+    private String company;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private LocalDateTime lastLogin;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

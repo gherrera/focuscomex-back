@@ -19,6 +19,7 @@ public class UsuarioMapper implements Mapper<UsuarioDTO, User> {
         dto.setUsername(entity.getUsername());
         dto.setName(entity.getName());
         dto.setType(entity.getType());
+        dto.setCompany(entity.getCompany());
 
         dto.setLastLogin(entity.getLastLogin());
         dto.setEnabled(entity.isEnabled());

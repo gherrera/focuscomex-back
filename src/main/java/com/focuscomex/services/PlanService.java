@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -153,10 +152,9 @@ public class PlanService {
 	
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public Map<String, String> createUserWithPlan(Long planId, UsuarioDTO usuarioDTO) {
+	public Map<String, Object> createUserWithPlan(Long planId, UsuarioDTO usuarioDTO) {
 		Plan plan = planRepository.findById(planId).orElseThrow(() -> new ComexException("Plan no existe: " + planId));
-		Optional<User> userOpt = userRepository.findByUsername(usuarioDTO.getUsername());
-		if(userOpt.isPresent()) {
+		if(userRepository.existsByUsername(usuarioDTO.getUsername())) {
 			throw new ComexException("Usuario ya existe");
 		}
 		
@@ -169,6 +167,7 @@ public class PlanService {
 		user.setType(UserType.REGULAR);
 		user.setEnabled(true);
 		user.setCreatedAt(LocalDateTime.now());
+		user.setCompany(usuarioDTO.getCompany());
 		userRepository.save(user);
 
 		Suscripcion suscripcion = new Suscripcion();
@@ -233,6 +232,6 @@ public class PlanService {
 			
 			return Map.of("initPoint", mp.get("init_point").toString());
 		}
-		return null;
+		return Map.of("user", user);
 	}
 }

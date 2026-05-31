@@ -25,6 +25,7 @@ import com.focuscomex.dto.JwtRequest;
 import com.focuscomex.dto.JwtResponse;
 import com.focuscomex.dto.PasswordChangeRequest;
 import com.focuscomex.dto.PasswordResetRequest;
+import com.focuscomex.dto.UsuarioDTO;
 import com.focuscomex.exceptions.ComexException;
 import com.focuscomex.security.AuthenticationService;
 import com.focuscomex.security.CurrentUser;
@@ -104,6 +105,16 @@ public class AuthController {
 			throw new ResponseStatusException(HttpStatus.TOO_MANY_REQUESTS, "Too many requests - Rate limit exceeded");
 		}
     }
+	
+	@PostMapping("register")
+	public JwtResponse register(@RequestBody UsuarioDTO usuario) {
+		try {
+			CurrentUser newUser = authenticationService.register(usuario);
+			return authenticationService.authenticate(newUser);
+		} catch (ComexException e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+	}
 	
 	@PostMapping("forgot-password")
     public void requestPasswordReset(@RequestBody PasswordResetRequest request) {
