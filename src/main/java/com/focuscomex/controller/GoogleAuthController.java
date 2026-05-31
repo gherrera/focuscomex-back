@@ -31,10 +31,12 @@ import com.focuscomex.security.CurrentUser;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 @RestController
 @RequestMapping("api/auth")
 @RequiredArgsConstructor
+@Log4j2
 public class GoogleAuthController {
 
     private final UserRepository userRepository;
@@ -60,6 +62,7 @@ public class GoogleAuthController {
 
         String redirectUri = computeRedirectUri(request);
 
+        log.debug("Iniciando autenticación Google. Computed redirect URI: {}", redirectUri);
         String authUrl = "https://accounts.google.com/o/oauth2/v2/auth"
                 + "?client_id=" + encode(googleClientId)
                 + "&redirect_uri=" + encode(redirectUri)
